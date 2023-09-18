@@ -1,60 +1,39 @@
 #include <iostream>
 #include <vector>
 
-void gen(int n)
+void print(const std::vector<int>& mas)
 {
-    std::vector<int> num(n);
-    for (auto i = 0; i <= n; i++)
-    {
-        num[i] = i;
+    for (auto i : mas)
+        std::cout << i << " ";
+    printf("\n");
+}
+
+void gen(std::vector<int> mas, int size)
+{
+    if (size == 1) {
+        print(mas);
+        return;
     }
-    auto next = true;
-    while (next)
-    {
-        for (auto i = 0; i <= n; i++)
-        {
-            std::cout << num[i] << " ";
-        }
-        std::cout << std::endl;
 
-        auto j = n - 1;
-        while (num[j] > num[j + 1])
-        {
-            j--;
-            if (j == 0)
-            {
-                next = false;
-                break;
-            }
-        }
-
-        if (next)
-        {
-            auto k = n;
-            while (num[j] > num[k])
-            {
-                k--;
-            }
-
-            std::swap(num[j], num[k]);
-
-            auto r = n;
-            auto s = j + 1;
-            while (r > s)
-            {
-                std::swap(num[r], num[s]);
-                r--;
-                s++;
-            }
-        }
+    for (auto i = 0; i < size; i++) {
+        gen(mas, size - 1);
+        if (size % 2 == 1)
+            std::swap(mas[0], mas[size - 1]);
+        else
+            std::swap(mas[i], mas[size - 1]);
     }
 }
 
 int main()
 {
     auto n = 0;
-    std::cout << "Enter: ";
+    std::cout << "Enter N: ";
     std::cin >> n;
-    gen(n);
+
+    std::vector<int> mas(n + 1);
+    for (auto i = 0; i <= n; i++)
+        mas[i] = i;
+
+    gen(mas, n + 1);
     return 0;
 }
