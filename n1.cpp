@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
 #include <cmath>
 
 int main() {
@@ -8,29 +9,24 @@ int main() {
     std::cout << "Enter some words or sentences: ";
     std::getline(std::cin, text);
 
-    for (int i = 0; i < text.length(); i++) { //Убрать все знаки препинания
-        if (ispunct(text[i])) {
-            text.erase(i--, 1);
-        }
-    }
 
-    std::vector<std::string> w1; //Поделили текст на слова
+    std::vector<std::string> w1; //Cut the sentence
     std::string word;
-    for (int i = 0; i < text.length(); i++) {
-        if (text[i] == ' ') {
+    for (const auto& c : text) {
+        if (c == ' ') {
             w1.push_back(word);
             word = "";
         }
-        else {
-            word += text[i];
+        else if (std::isalpha(c)) {
+            word += c;
         }
     }
     w1.push_back(word);
 
-    std::vector<std::string>mas_1;//Убрали повторки
-    for (std::string word : w1) {
+    std::vector<std::string>mas_1;//Delete extra
+    for (const std::string& word : w1) {
         bool found = false;
-        for (std::string x : mas_1) {
+        for (std::string& x : mas_1) {
             if (word == x) {
                 found = true;
                 break;
@@ -41,7 +37,7 @@ int main() {
         }
     }
 
-    std::vector<int> freqs(mas_1.size()); // Посчитали частоту
+    std::vector<int> freqs(mas_1.size()); // Count frequency
     for (int i = 0; i < mas_1.size(); i++) {
         int count = 0;
         for (int j = 0; j < w1.size(); j++) {
@@ -52,7 +48,7 @@ int main() {
         freqs[i] = count;
     }
 
-    std::cout << "Words:"; //Результаты
+    std::cout << "Words:"; //Results
     for (std::string word : mas_1) {
         std::cout << word << std::endl;
     }

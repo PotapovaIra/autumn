@@ -2,11 +2,10 @@
 #include <vector>
 #include <limits>
 
-using namespace std;
 
 int bin(vector<int>mas, int x) { //х-то, что ищем
     auto l = 0;
-    auto r = static_cast<int>(mas.size()) - 1; // преобразуем size_t в int
+    auto r = mas.size() - 1; // преобразуем size_t в int
 
     while (l <= r) {
         auto middle = l + (r - l) / 2;
@@ -36,10 +35,10 @@ int main() {
     auto n = bin(mas, x);
 
     if (n == -1) {
-        cout << "No such index x"<<std::endl;
+        std::cout << "No such index x"<<std::endl;
     }
     else {
-        cout << "x is situated at index " << n << std::endl;
+        std::cout << "x is situated at index " << n << std::endl;
     }
 
     return 0;
