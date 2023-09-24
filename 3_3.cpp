@@ -36,5 +36,31 @@ int main() {
     }
 
 
+    auto sortByMod = [](int mod) {
+        return [mod](int a, int b) {
+            return a % mod < b % mod;
+            };
+        };
+    std::sort(mas.begin(), mas.end(), sortByMod);
+
+    std::cout << "Sorted by remain: ";
+    for (const auto& el : mas) {
+        std::cout << el << " ";
+    }
+    std::cout << std::endl;
+
+
+    auto sort_by_remainder = [](std::vector<int>& mas) {
+        std::sort(mas.begin(), mas.end(), [](const int& a, const int& b) {
+            return a % 3 < b % 3;
+            });
+        };
+
+    std::cout << "Sorted by remain: ";
+    for (const auto& el : mas) {
+        std::cout << el << " ";
+    }
+    std::cout << std::endl;
+
     return 0;
 }
