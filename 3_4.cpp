@@ -3,9 +3,8 @@
 #include <unordered_map>
 #include <vector>
 
-double calculate(double a, double b, std::function<double(double, double)> func) {
-    return func(a, b);
-}
+
+double calculate(double a, double b, std::function<double(double, double)> func);
 
 int main() {
     std::unordered_map<std::string, std::function<double(double, double)>> funcs = {
@@ -28,4 +27,8 @@ int main() {
     }
 
     return 0;
+}
+
+double calculate(double a, double b, std::function<double(double, double)> func) {
+    return func(a, b);
 }
