@@ -34,6 +34,19 @@ int main() {
     for (const auto& el : mas) {
         std::cout << el << " ";
     }
+    auto sortRemain = [](int a, int b) {
+        if (a % 3 == b % 3) { // if remainders are equal
+            return a < b; // sort by value
+        }
+        return a % 3 < b % 3; // otherwise sort by remainder
+        };
+    std::sort(mas.begin(), mas.end(), sortRemain); //by remainder
+
+    std::cout << "Sorted by remainder: ";
+    for (const auto& el : mas) {
+        std::cout << el << " ";
+    }
+    std::cout << std::endl;
 
 
     return 0;
