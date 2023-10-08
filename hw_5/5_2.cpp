@@ -6,14 +6,14 @@ public:
     Example() {
         count++;
     }
-    int getCount() {
+    static int getCount() {
         return count;
     }
     ~Example() {
         count--;
     }
 };
-
+int Example::count = 0;
 
 int main() {
     auto Ex1 = Example();
