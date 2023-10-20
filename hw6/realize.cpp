@@ -13,10 +13,6 @@ Class::Class(Class&& other) : mas(other.mas), sizemas(other.sizemas), v(std::mov
     other.sizemas = 0;
 }
 
-Class::~Class() {
-    delete mas;
-}
-
 Class& Class::operator=(const Class& other) {
     if (this != &other) {
         delete mas;
