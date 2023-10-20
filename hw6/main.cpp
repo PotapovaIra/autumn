@@ -4,7 +4,6 @@ int main() {
     Class a; // deafult constructor
     Class b(a); // copy constructor
     Class c(std::move(a)); // constructor move
-    a = b; // operator of copying
     a = std::move(c); // operator of moving
     return 0;
 }
