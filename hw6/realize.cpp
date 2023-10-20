@@ -14,12 +14,12 @@ Class::Class(Class&& other) : mas(other.mas), sizemas(other.sizemas), v(std::mov
 }
 
 Class::~Class() {
-    delete[] mas;
+    delete mas;
 }
 
 Class& Class::operator=(const Class& other) {
     if (this != &other) {
-        delete[] mas;
+        delete mas;
         mas = new int[other.sizemas];
         sizemas = other.sizemas;
         v = other.v;
@@ -32,7 +32,7 @@ Class& Class::operator=(const Class& other) {
 
 Class& Class::operator=(Class&& other) {
     if (this != &other) {
-        delete[] mas;
+        delete mas;
         mas = other.mas;
         sizemas = other.sizemas;
         v = std::move(other.v);
