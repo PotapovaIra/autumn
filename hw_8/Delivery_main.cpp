@@ -7,7 +7,7 @@ int main()
 	Delivery* delivery = 0;
 
 	factory = new WalkerFactory;
-	delivery = factory->creation(0, 5, 10, true, true);
+	delivery = factory->creation(5, true);
 	delivery->name();
 	delivery->take_from_warehouse();
 	delivery->deliver_to_customer();
@@ -15,8 +15,8 @@ int main()
 	delete delivery;
 	delete factory;
 
-	factory = new ScooterFactory;
-	delivery = factory->creation(3, 10, 5, false, true);
+	factory = new CarFactory;
+	delivery = factory->creation(30, true);
 	delivery->name();
 	delivery->take_from_warehouse();
 	delivery->deliver_to_customer();
@@ -25,13 +25,16 @@ int main()
 	delete factory;
 
 	factory = new RobotFactory;
-	delivery = factory->creation(70, 3, 15, true, false);
+	delivery = factory->creation(15, true);
 	delivery->name();
 	delivery->take_from_warehouse();
 	delivery->deliver_to_customer();
 	delivery->receive_tip();
 	delete delivery;
 	delete factory;
+
+	return 0;
+}
 	//WalkerFactory* walker_factory = new WalkerFactory;
 	//ScooterFactory* scooter_factory = new ScooterFactory;
 	//RobotFactory* robot_factory = new RobotFactory;
@@ -54,5 +57,5 @@ int main()
 	//delete walker_factory;
 	//delete scooter_factory;
 	//delete robot_factory;
-	return 0;
-}
+	//return 0;
+//}
