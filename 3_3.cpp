@@ -26,6 +26,7 @@ int main() {
     for (const auto& el : mas) {
         std::cout << el << " ";
     }
+    std::cout << std::endl;
     auto sortDesc = [](int a, int b) {
         return a > b;
         };
@@ -34,20 +35,21 @@ int main() {
     for (const auto& el : mas) {
         std::cout << el << " ";
     }
-    auto sortRemain = [](int a, int b) {
-        if (a % 3 == b % 3) { // if remainders are equal
-            return a < b; // sort by value
-        }
-        return a % 3 < b % 3; // otherwise sort by remainder
-        };
-    std::sort(mas.begin(), mas.end(), sortRemain); //by remainder
+    std::cout << std::endl;
 
-    std::cout << "Sorted by remainder: ";
+
+
+
+    auto sort_by_remainder = [](std::vector<int>& mas) {
+        std::sort(mas.begin(), mas.end(), [](const int& a, const int& b) {
+            return a % 3 < b % 3;
+            });
+        };
+    std::cout << "Sorted by remain: ";
     for (const auto& el : mas) {
         std::cout << el << " ";
     }
     std::cout << std::endl;
-
 
     return 0;
 }
