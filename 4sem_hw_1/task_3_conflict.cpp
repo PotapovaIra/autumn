@@ -4,12 +4,13 @@ using namespace std;
 
 int main()
 {
+	auto x = 1;
 	auto n = 0;
 	cout << "Количество элементов: ";
 	cin >> n;
 
-	int mass[n];
-	for (int i = 0; i < n; ++i)
+	auto mass[n];
+	for (auto i = 0; i < n; ++i)
 	{
 		cout << i + 1 << "-ый элемент: ";
 		cin >> mass[i];
@@ -20,9 +21,9 @@ int main()
 		cout << mass[i] << " ";
 	}
 	cout << endl;
-	for (int i = 1; i < n; ++i)
+	for (auto i = 1; i < n; ++i)
 	{
-		for (int r = 0; r < n - i; r++)
+		for (auto r = 0; r < n - i; r++)
 		{
 			if (mass[r] < mass[r + 1])
 			{
@@ -34,7 +35,7 @@ int main()
 		}
 	}
 	cout << "Отсортированный массив: ";
-	for (int i = 0; i < n; ++i)
+	for (auto i = 0; i < n; ++i)
 	{
 		cout << mass[i] << " ";
 	}
