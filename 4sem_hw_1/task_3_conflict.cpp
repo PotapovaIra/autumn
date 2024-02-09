@@ -1,25 +1,23 @@
 #include <iostream>
 
-using namespace std;
-
 int main()
 {
-	auto n = 0;
-	cout << "Количество элементов: ";
-	cin >> n;
+	int n = 0;
+	std::cout << "Количество элементов: ";
+	std::cin >> n;
 
 	int mass[n];
+	for (auto i = 0; i < n; ++i)
+	{
+		std::cout << i + 1 << "-ый элемент: ";
+		std::cin >> mass[i];
+	}
+	std::cout << "Исходный массив: ";
 	for (int i = 0; i < n; ++i)
 	{
-		cout << i + 1 << "-ый элемент: ";
-		cin >> mass[i];
+		std::cout << mass[i] << " ";
 	}
-	cout << "Исходный массив: ";
-	for (int i = 0; i < n; ++i)
-	{
-		cout << mass[i] << " ";
-	}
-	cout << endl;
+	std::cout << std::endl;
 	for (int i = 1; i < n; ++i)
 	{
 		for (int r = 0; r < n - i; r++)
@@ -33,12 +31,12 @@ int main()
 			}
 		}
 	}
-	cout << "Отсортированный массив: ";
+	std::cout << "Отсортированный массив: ";
 	for (int i = 0; i < n; ++i)
 	{
-		cout << mass[i] << " ";
+		std::cout << mass[i] << " ";
 	}
-	cout << endl;
+	std::cout << std::endl;
 
 
 
