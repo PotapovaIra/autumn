@@ -59,7 +59,7 @@ int main()
     std::list<int> lst(size);
     std::forward_list<int> forwardlst(size);
 
-  
+
     for (int i = 0; i < size; ++i)
     {
         arr[i] = i;
@@ -84,16 +84,47 @@ int main()
     std::sort(deq.begin(), deq.end());
     t_deq.stop();
 
-    Timer t_lst("std::list sorting");
-    t_lst.start();
+    Timer t_lst1("std::list sorting by .sort");
+    t_lst1.start();
     lst.sort();
-    t_lst.stop();
+    t_lst1.stop();
 
     Timer t_forwardlst("std::forward_list sorting");
     t_forwardlst.start();
     forwardlst.sort();
     t_forwardlst.stop();
 
+
+    // Copying using std::copy
+    Timer t_arr_copy("std::array copy");
+    t_arr_copy.start();
+    std::array<int, size> arr_copy;
+    std::copy(arr.begin(), arr.end(), arr_copy.begin());
+    t_arr_copy.stop();
+
+    Timer t_vec_copy("std::vector copying");
+    t_vec_copy.start();
+    std::vector<int> vec_copy(size);
+    std::copy(vec.begin(), vec.end(), vec_copy.begin());
+    t_vec_copy.stop();
+
+    Timer t_deq_copy("std::deque copying");
+    t_deq_copy.start();
+    std::deque<int> deq_copy(size);
+    std::copy(deq.begin(), deq.end(), deq_copy.begin());
+    t_deq_copy.stop();
+
+    Timer t_lst_copy("std::list copying");
+    t_lst_copy.start();
+    std::list<int> lst_copy(size); // Выделение места заранее
+    std::copy(lst.begin(), lst.end(), std::back_inserter(lst_copy));
+    t_lst_copy.stop();
+
+    Timer t_forwardlst_copy("std::forward_list copying");
+    t_forwardlst_copy.start();
+    std::forward_list<int> forwardlst_copy(size); // Выделение места заранее
+    std::copy(forwardlst.begin(), forwardlst.end(), std::front_inserter(forwardlst_copy));
+    t_forwardlst_copy.stop();
 
     return 0;
 }
