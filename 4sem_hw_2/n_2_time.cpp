@@ -116,13 +116,13 @@ int main()
 
     Timer t_lst_copy("std::list copying");
     t_lst_copy.start();
-    std::list<int> lst_copy(size); // Выделение места заранее
+    std::list<int> lst_copy(size);
     std::copy(lst.begin(), lst.end(), std::back_inserter(lst_copy));
     t_lst_copy.stop();
 
     Timer t_forwardlst_copy("std::forward_list copying");
     t_forwardlst_copy.start();
-    std::forward_list<int> forwardlst_copy(size); // Выделение места заранее
+    std::forward_list<int> forwardlst_copy(size); 
     std::copy(forwardlst.begin(), forwardlst.end(), std::front_inserter(forwardlst_copy));
     t_forwardlst_copy.stop();
 
