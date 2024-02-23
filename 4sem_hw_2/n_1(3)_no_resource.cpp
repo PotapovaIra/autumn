@@ -4,15 +4,14 @@
 int main() {
     std::vector<int> vectr;
 
-    // Запрашиваем большое количество памяти
-    vectr.reserve(1000000000); // 1 миллиард элементов
+    // reserve 1 bil elements
+    vectr.reserve(1000000000);
 
-    // Пытаемся добавить элементы, чтобы увеличить размер вектора
+    // try add an element to increase size of vect
     for (auto i = 0; i < 1000; i++) {
         vectr.push_back(i);
     }
 
-    // Пробуем добавить еще один элемент
     try {
         vectr.push_back(1001);
     }
