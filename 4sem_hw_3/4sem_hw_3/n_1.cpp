@@ -53,3 +53,18 @@ public:
 		}
 	}
 };
+
+inline static constexpr std::size_t SIZE = 10000;
+int main() 
+{
+	const auto N = 10000;
+
+	//std::set
+	Timer timer;
+	std::set<int> set;
+	std::random_device rd;
+	//use random numbers
+	std::mt19937 gen(rd());
+
+	
+}
