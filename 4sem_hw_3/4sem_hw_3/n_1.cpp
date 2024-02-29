@@ -65,10 +65,9 @@ int main()
 	//use random numbers
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution<int> dis(1, SIZE);//https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution
-	for (int i = 0; i < SIZE; ++i)
+	for (auto i = 0; i < SIZE; ++i)
 		set.insert(dis(gen));
 
-}
 
 	//std:vector
 	std::vector<int> vec;
@@ -77,5 +76,14 @@ int main()
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution<int> dis(1, SIZE);
 
-	
+	for (auto i = 0; i < SIZE; i++) 
+	{
+		vec.push_back(dis(gen));
+	}
+	std::sort(vec.begin(), vec.end());
+	return 0;
 }
+
+
+
+	
