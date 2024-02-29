@@ -57,7 +57,6 @@ public:
 inline static constexpr std::size_t SIZE = 10000;
 int main() 
 {
-	const auto N = 10000;
 
 	//std::set
 	Timer timer;
@@ -65,6 +64,18 @@ int main()
 	std::random_device rd;
 	//use random numbers
 	std::mt19937 gen(rd());
+	std::uniform_int_distribution<int> dis(1, SIZE);//https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution
+	for (int i = 0; i < SIZE; ++i)
+		set.insert(dis(gen));
+
+}
+
+	//std:vector
+	std::vector<int> vec;
+	std::random_device rd;
+	//use random numbers
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<int> dis(1, SIZE);
 
 	
 }
