@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <chrono>
 #include <random>
+
 class Timer
 {
 public:
@@ -53,34 +54,35 @@ public:
 		}
 	}
 };
-
-inline static constexpr std::size_t SIZE = 10000;
+static constexpr std::size_t SIZE = 10000;
 int main() 
 {
-
 	//std::set
-	Timer timer;
-	std::set<int> set;
-	std::random_device rd;
-	//use random numbers
-	std::mt19937 gen(rd());
-	std::uniform_int_distribution<int> dis(1, SIZE);//https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution
-	for (auto i = 0; i < SIZE; ++i)
-		set.insert(dis(gen));
-
-
-	//std:vector
-	std::vector<int> vec;
-	std::random_device rd;
-	//use random numbers
-	std::mt19937 gen(rd());
-	std::uniform_int_distribution<int> dis(1, SIZE);
-
-	for (auto i = 0; i < SIZE; i++) 
 	{
-		vec.push_back(dis(gen));
+		Timer timer;
+		std::set<int> set;
+		std::random_device rd;
+		//use random numbers
+		std::mt19937 gen(rd());
+		std::uniform_int_distribution<int> dis(1, SIZE);//https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution
+		for (auto i = 0; i < SIZE; ++i)
+			set.insert(dis(gen));
+
 	}
-	std::sort(vec.begin(), vec.end());
+	//std:vector
+	{
+		Timer timer;
+		std::vector<int> vec;
+		std::random_device rd;
+		//use random numbers
+		std::mt19937 gen(rd());
+		std::uniform_int_distribution<int> dis(1, SIZE);
+
+		for (auto i = 0; i < SIZE; i++)
+			vec.push_back(dis(gen));
+
+		std::sort(vec.begin(), vec.end());
+	}
 	return 0;
 }
 
