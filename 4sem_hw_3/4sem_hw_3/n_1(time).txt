@@ -1,0 +1,51 @@
+Исходя из времен, полученных ниже, видим, что константы сложности для вектора и set отличаются в 3-4
+(где-то в 5) раза.
+Также видно, что победителем в этом случае является vector(второй по счёту в каждом измерении)
+
+45082 microseconds -set
+13550 microseconds -vector
+
+63877 microseconds
+22751 microseconds
+
+60045 microseconds
+15006 microseconds
+
+69197 microseconds
+14996 microseconds
+
+53128 microseconds
+15388 microseconds
+
+57743 microseconds
+15616 microseconds
+
+53838 microseconds
+27046 microseconds
+
+44764 microseconds
+14273 microseconds
+
+46498 microseconds
+16272 microseconds
+
+49993 microseconds
+14277 microseconds
+
+53782 microseconds
+15681 microseconds
+
+48075 microseconds
+15497 microseconds
+
+55348 microseconds
+15578 microseconds
+
+46002 microseconds
+14138 microseconds
+
+49776 microseconds
+16176 microseconds
+
+111044 microseconds
+45467 microseconds
