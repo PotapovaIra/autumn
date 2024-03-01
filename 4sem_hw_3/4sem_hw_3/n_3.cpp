@@ -152,16 +152,61 @@ int main()
 {
     const auto numStrings = 308915776;//amount
     const auto stringlen = 6;
-    std::string randString = gen(stringlen);
+    
+    for (int i = 0; i < numStrings; ++i)
+    {
+        std::string randString = gen(stringlen);
 
+        //count hash-code
+        unsigned int rsHash = RSHash(randString.c_str(), stringlen);
+        unsigned int jsHash = JSHash(randString.c_str(), stringlen);
+        unsigned int pjwHash = PJWHash(randString.c_str(), stringlen);
+        unsigned int elfHash = ELFHash(randString.c_str(), stringlen);
+        unsigned int bkdrHash = BKDRHash(randString.c_str(), stringlen);
+        unsigned int sdbmHash = SDBMHash(randString.c_str(), stringlen);
+        unsigned int djbHash = DJBHash(randString.c_str(), stringlen);
+        unsigned int dekHash = DEKHash(randString.c_str(), stringlen);
+        unsigned int apHash = APHash(randString.c_str(), stringlen);
 
-    unsigned int rsHash = RSHash(randString.c_str(), stringlen);
-    unsigned int jsHash = JSHash(randString.c_str(), stringlen);
-    unsigned int pjwHash = PJWHash(randString.c_str(), stringlen);
-    unsigned int elfHash = ELFHash(randString.c_str(), stringlen);
-    unsigned int bkdrHash = BKDRHash(randString.c_str(), stringlen);
-    unsigned int sdbmHash = SDBMHash(randString.c_str(), stringlen);
-    unsigned int djbHash = DJBHash(randString.c_str(), stringlen);
-    unsigned int dekHash = DEKHash(randString.c_str(), stringlen);
-    unsigned int apHash = APHash(randString.c_str(), stringlen);
+        //output
+        std::ofstream out;
+        out.open("RSHash.txt", std::ios_base::app);
+        out << rsHash << std::endl;
+        out.close();
+
+        out.open("JSHash.txt", std::ios_base::app);
+        out << jsHash << std::endl;
+        out.close();
+
+        out.open("PJWHash.txt", std::ios_base::app);
+        out << pjwHash << std::endl;
+        out.close();
+
+        out.open("ELFHash.txt", std::ios_base::app);
+        out << elfHash << std::endl;
+        out.close();
+
+        out.open("BKDRHash.txt", std::ios_base::app);
+        out << bkdrHash << std::endl;
+        out.close();
+
+        out.open("SDBMHash.txt", std::ios_base::app);
+        out << sdbmHash << std::endl;
+        out.close();
+
+        out.open("DJBHash.txt", std::ios_base::app);
+        out << djbHash << std::endl;
+        out.close();
+
+        out.open("DEKHash.txt", std::ios_base::app);
+        out << dekHash << std::endl;
+        out.close();
+
+        out.open("APHash.txt", std::ios_base::app);
+        out << apHash << std::endl;
+        out.close();
+    }
+    
+    return 0;
+
 }
