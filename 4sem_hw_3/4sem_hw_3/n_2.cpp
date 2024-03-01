@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <unordered_set>
 
 std::size_t hash(const char* s)
 {
@@ -11,12 +13,17 @@ std::size_t hash(const char* s)
 
 	return h % 128;
 }
+struct Fields {
+	int intField;
+	double doubleField;
+	std::string stringField;
+};
 
-int main(int argc, char** argv)
-{
-	std::cout << hash("ivanov") << std::endl;
-
-	system("pause");
-
-	return EXIT_SUCCESS;
-}
+//int main(int argc, char** argv)
+//{
+//	std::cout << hash("ivanov") << std::endl;
+//
+//	system("pause");
+//
+//	return EXIT_SUCCESS;
+//}
