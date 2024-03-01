@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_set>
+#include <fstream>
 
 std::size_t hash(const char* s)
 {
@@ -21,7 +22,7 @@ struct Fields {
 int main()
 {
 	std::unordered_set<std::size_t> hashCodes;
-
+	//hash_func
 	const auto numExamples = 1000; //examples
 	for (int i = 0; i < numExamples; i++)
 	{
@@ -34,7 +35,19 @@ int main()
 		std::size_t hashCode = hash(field.str.c_str());
 		hashCodes.insert(hashCode);
 	}
+
+	std::ofstream out("hash_codes.txt");
+	for (auto code : hashCodes)
+	{
+		out << code << std::endl;
+	}
+	out.close();
+	std::cout << "Succesfully saved" << std::endl;
+
 }
+
+
+
 //int main(int argc, char** argv)
 //{
 //	std::cout << hash("ivanov") << std::endl;
