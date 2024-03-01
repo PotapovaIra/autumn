@@ -28,7 +28,7 @@ int main()
 	{
 		Fields field;
 		field.integer = rand();
-		//field.doubl = ///
+		field.doubl = static_cast<double>(rand()) / RAND_MAX;
 		field.str = std::to_string(i);
 
 		//count hash-code for examples
@@ -44,6 +44,7 @@ int main()
 	out.close();
 	std::cout << "Succesfully saved" << std::endl;
 
+	return 0;
 }
 
 
