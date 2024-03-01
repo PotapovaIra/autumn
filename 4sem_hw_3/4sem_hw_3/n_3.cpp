@@ -150,10 +150,18 @@ std::string gen(int length)
 }
 int main()
 {
-    const auto numStrings = 308915776;
-    const auto stringLength = 6;
+    const auto numStrings = 308915776;//amount
+    const auto stringlen = 6;
+    std::string randString = gen(stringlen);
 
-    for (int i = 0; i < numStrings; ++i)
-    {
-        std::string randomString = generateRandomString(stringLength);
+
+    unsigned int rsHash = RSHash(randString.c_str(), stringlen);
+    unsigned int jsHash = JSHash(randString.c_str(), stringlen);
+    unsigned int pjwHash = PJWHash(randString.c_str(), stringlen);
+    unsigned int elfHash = ELFHash(randString.c_str(), stringlen);
+    unsigned int bkdrHash = BKDRHash(randString.c_str(), stringlen);
+    unsigned int sdbmHash = SDBMHash(randString.c_str(), stringlen);
+    unsigned int djbHash = DJBHash(randString.c_str(), stringlen);
+    unsigned int dekHash = DEKHash(randString.c_str(), stringlen);
+    unsigned int apHash = APHash(randString.c_str(), stringlen);
 }
