@@ -3,17 +3,17 @@
 #include <unordered_set>
 #include <fstream>
 
-std::size_t hash(const char* s)
-{
-	auto h = 0U;
-
-	for (auto p = s; *p != '\0'; ++p)
-	{
-		h = h * 31 + static_cast <unsigned int> (*p);
-	}
-
-	return h % 128;
-}
+//std::size_t hash(const char* s)
+//{
+//	auto h = 0U;
+//
+//	for (auto p = s; *p != '\0'; ++p)
+//	{
+//		h = h * 31 + static_cast <unsigned int> (*p);
+//	}
+//
+//	return h % 128;
+//}
 struct Fields {
 	int integer;
 	double doubl;
