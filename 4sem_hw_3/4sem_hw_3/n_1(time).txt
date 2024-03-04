@@ -2,50 +2,50 @@
 (где-то в 5) раза.
 Также видно, что победителем в этом случае является vector(второй по счёту в каждом измерении)
 
-45082 microseconds -set
-13550 microseconds -vector
+109677 microseconds -set
+46802 microseconds -vector
 
-63877 microseconds
-22751 microseconds
+117185 microseconds
+48687 microseconds
 
-60045 microseconds
-15006 microseconds
+104395 microseconds
+49745 microseconds
 
-69197 microseconds
-14996 microseconds
+109493 microseconds
+48408 microseconds
 
-53128 microseconds
-15388 microseconds
+103959 microseconds
+47415 microseconds
 
-57743 microseconds
-15616 microseconds
+103734 microseconds
+55492 microseconds
 
-53838 microseconds
-27046 microseconds
+103069 microseconds
+46743 microseconds
 
-44764 microseconds
-14273 microseconds
+103463 microseconds
+47167 microseconds
 
-46498 microseconds
-16272 microseconds
+104609 microseconds
+49248 microseconds
 
-49993 microseconds
-14277 microseconds
+106492 microseconds
+47763 microseconds
 
-53782 microseconds
-15681 microseconds
+103646 microseconds
+54467 microseconds
 
-48075 microseconds
-15497 microseconds
+104824 microseconds
+47894 microseconds
 
-55348 microseconds
-15578 microseconds
+105273 microseconds
+51926 microseconds
 
-46002 microseconds
-14138 microseconds
+105123 microseconds
+48598 microseconds
 
-49776 microseconds
-16176 microseconds
+103724 microseconds
+46115 microseconds
 
-111044 microseconds
-45467 microseconds
+104612 microseconds
+47641 microseconds

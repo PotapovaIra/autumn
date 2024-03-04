@@ -4,87 +4,42 @@
 #include <algorithm>
 #include <chrono>
 #include <random>
+#include "Timer.h"
 
-class Timer
+int main(int argc, char** argv)
 {
-public:
-	using clock_t = std::chrono::steady_clock;
-	using time_point_t = clock_t::time_point;
+    // better to be as more as possible
+    constexpr std::size_t size = 100'000;
 
-private:
-	time_point_t m_begin;
-	bool m_running;
-	std::chrono::microseconds m_total;
+    // defines uniform distribution borders
+    constexpr auto min_int = -100;
+    constexpr auto max_int = 100;
 
-public:
-	Timer() : m_begin(clock_t::now()), m_running(false), m_total(std::chrono::microseconds(0)) {}
+    // create random generator with system clock seed
+    auto gen = std::mt19937_64(std::chrono::system_clock::now().time_since_epoch().count());
 
-	~Timer() noexcept
-	{
-		if (m_running)
-			stop();
-		std::cout << std::chrono::duration_cast<std::chrono::microseconds>(clock_t::now() - m_begin).count() << " microseconds" << std::endl;
-		//std::cout << "total time: " << m_total.count() << " microseconds" << std::endl;
-	}
+    // you can choose other distribution if you want
+    auto dist = std::uniform_int_distribution<int>(min_int, max_int);
 
-	void start()
-	{
-		if (!m_running)
-		{
-			m_running = true;
-			m_begin = clock_t::now();
-		}
-	}
+    // create and generate vector
+    auto vec = std::vector<int>(size, 0);
 
-	void stop()
-	{
-		if (m_running)
-		{
-			m_total += std::chrono::duration_cast<std::chrono::microseconds>(clock_t::now() - m_begin);
-			m_running = false;
-		}
-	}
+    std::generate(std::begin(vec), std::end(vec), [&gen, &dist]() { return dist(gen); });
 
-	void continu()
-	{
-		if (!m_running)
-		{
-			m_running = true;
-			m_begin = clock_t::now();
-		}
-	}
-};
-static constexpr std::size_t SIZE = 10000;
-int main() 
-{
-	//std::set
-	{
-		Timer timer;
-		std::set<int> set;
-		std::random_device rd;
-		//use random numbers
-		std::mt19937 gen(rd());
-		std::uniform_int_distribution<int> dis(1, SIZE);//https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution
-		for (auto i = 0; i < SIZE; ++i)
-			set.insert(dis(gen));
+    {
+        Timer timer;
+        std::set<int> mySet(vec.begin(), vec.end());
+    }
 
-	}
-	//std:vector
-	{
-		Timer timer;
-		std::vector<int> vec;
-		std::random_device rd;
-		//use random numbers
-		std::mt19937 gen(rd());
-		std::uniform_int_distribution<int> dis(1, SIZE);
+    {
+        Timer timer;
+        std::sort(vec.begin(), vec.end());
+    }
 
-		for (auto i = 0; i < SIZE; i++)
-			vec.push_back(dis(gen));
 
-		std::sort(vec.begin(), vec.end());
-	}
-	return 0;
+    return EXIT_SUCCESS;
 }
+
 
 
 
