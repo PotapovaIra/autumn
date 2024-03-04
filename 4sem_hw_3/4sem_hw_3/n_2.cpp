@@ -6,7 +6,6 @@
 #include <random>
 #include <algorithm>
 #include <boost/functional/hash.hpp>
-
 #include <vector>
 
 struct Fields {
@@ -23,7 +22,7 @@ int main(int argc, char** argv)
     constexpr auto max_int = 100;
 
     auto gen = std::mt19937_64(std::chrono::system_clock::now().time_since_epoch().count());
-    auto dist = std::uniform_real_distribution(min_int, max_int);
+    auto dist = std::uniform_real_distribution<double>(min_int, max_int); // исправлено
 
     auto vec = std::vector<double>(size, 0.0);
     std::generate(std::begin(vec), std::end(vec), [&gen, &dist]() { return dist(gen); });
@@ -36,8 +35,8 @@ int main(int argc, char** argv)
     {
         Fields field;
         field.int1 = std::uniform_int_distribution<int>(-100, 100)(gen);
-        field.doubl1 = std::uniform_real_distribution<double>(-100.0, 100.0)(gen);
-        field.doubl2 = std::uniform_real_distribution<double>(-100.0, 100.0)(gen);
+        field.doubl1 = dist(gen); // исправлено
+        field.doubl2 = dist(gen); // исправлено
 
         std::size_t hashCode = 0;
         boost::hash_combine(hashCode, field.int1);
@@ -46,14 +45,16 @@ int main(int argc, char** argv)
 
         int prevSize = hashCodes.size();
         hashCodes.insert(hashCode);
-        int current = hashCodes.size();
+        int currentSize = hashCodes.size();
 
+        auto collision = vec.size() - hashCodes.size();
+ //       std::cout << collision << std::endl;
+        std::cout << currentSize << std::endl;
 
-        std::cout << "collisions: " << prevSize - current << "examples: " << current << std::endl;
     }
-
     return 0;
 }
+
 
 
 
