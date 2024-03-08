@@ -3,7 +3,7 @@
 #include<vector>
 #include<numeric>
 
-int main() 
+int main()
 {
 	//1) Created P1
 	std::vector<int> P1(101);
@@ -12,11 +12,11 @@ int main()
 	for (int num : P1) {
 		std::cout << num << " ";
 	}
-	std::cout <<  std::endl;
+	std::cout << std::endl;
 	// 2) Added some new numbers from std::cin
 	int x;
 	std::cout << "Enter numbers(if you want to stop, enter -2)" << std::endl;
-	while (std::cin >> x && x != -2) 
+	while (std::cin >> x && x != -2)
 	{
 		P1.push_back(x);
 	}
@@ -63,10 +63,10 @@ int main()
 		std::cout << num << " ";
 	}
 	std::cout << std::endl;
-	// 10) Count sum of P2 elements
+	// 10) Counted sum of P2 elements
 	auto sum_P2 = std::accumulate(P2.begin(), P2.end(), 0);
 	std::cout << "Sum of P2 elements: " << sum_P2 << std::endl;
-	//11) Change some elemets in P2 by 1
+	//11) Changed some elemets in P2 by 1
 	auto numbers = 7;
 	std::fill_n(P2.begin(), numbers, 1);
 	std::cout << "Sequence P2 with first elements changes by 1: ";
@@ -74,7 +74,7 @@ int main()
 		std::cout << num << " ";
 	}
 	std::cout << std::endl;
-	// 12) Create P3 = P1- P2
+	// 12) Created P3 = P1- P2
 	std::vector<int> P3(P1.size());
 	std::transform(P1.begin(), P1.end(), P2.begin(), P3.begin(), std::minus<int>());
 	std::cout << "P3: ";
@@ -82,18 +82,82 @@ int main()
 		std::cout << num << " ";
 	}
 	std::cout << std::endl;
-	// 13) Change each negative element by 0
+	// 13) Changed each negative element by 0
 	std::replace_if(P3.begin(), P3.end(), [](int x) {return x < 0;}, 0);
 	std::cout << "P3 after changing negative elemets by 0: ";
 	for (int num : P3) {
 		std::cout << num << " ";
 	}
 	std::cout << std::endl;
-	// 14) Delete all nulls from P3
+	// 14) Deleted all nulls from P3
 	P3.erase(std::remove(P3.begin(), P3.end(), 0), P3.end());
 	std::cout << "P3 after deleting all 0: ";
 	for (int num : P3) {
 		std::cout << num << " ";
 	}
 	std::cout << std::endl;
-} 
+	// 15) Reversed P3
+	std::reverse(P3.begin(), P3.end());
+	std::cout << "P3 after revesing: ";
+	for (int num : P3) {
+		std::cout << num << " ";
+	}
+	std::cout << std::endl;
+
+	// 16) Top-3 max els, set_difference
+	//17)Sort P1 and P2
+	std::sort(P1.begin(), P1.end());
+	std::cout << "P1 after sorting: ";
+	for (int num : P3) {
+		std::cout << num << " ";
+	}
+	std::cout << std::endl;
+	std::sort(P2.begin(), P2.end());
+	std::cout << "P2 after sorting: ";
+	for (int num : P3) {
+		std::cout << num << " ";
+	}
+	std::cout << std::endl;
+	//18) Merging P1 and P2
+	std::vector<int> P4(P1.size() + P2.size());
+	std::merge(P1.begin(), P1.end(), P2.begin(), P2.end(), P4.begin());
+	std::cout << "P4 after merging P1 and P2: ";
+	for (int num : P4) {
+		std::cout << num << " ";
+	}
+	std::cout << std::endl;
+
+	//19) equal_range
+	auto range = std::equal_range(P4.begin(), P4.end(), 1);
+	std::cout << "P4 range: ";
+	for (int num : P4) {
+		std::cout << num << " ";
+	}
+	std::cout << std::endl;
+	// 20) Cout 10 elements of all sequences
+	std::cout << "10 elements of P1: ";
+	for (int i = 0; i < 10 && i < P1.size(); ++i) {
+		std::cout << P1[i] << " ";
+	}
+	std::cout << std::endl;
+
+	std::cout << "10 elements of P2: ";
+	for (int i = 0; i < 10 && i < P2.size(); ++i) {
+		std::cout << P2[i] << " ";
+	}
+	std::cout << std::endl;
+
+	std::cout << "10 elements of P3: ";
+	for (int i = 0; i < 10 && i < P3.size(); ++i) {
+		std::cout << P3[i] << " ";
+	}
+	std::cout << std::endl;
+
+	std::cout << "10 elements of P4: ";
+	for (int i = 0; i < 10 && i < P4.size(); ++i) {
+		std::cout << P4[i] << " ";
+	}
+	std::cout << std::endl;
+
+	return 0;
+}
