@@ -2,6 +2,7 @@
 #include<algorithm>
 #include<vector>
 #include<numeric>
+#include <random>
 
 int main()
 {
@@ -26,20 +27,23 @@ int main()
 	}
 	std::cout << std::endl;
 	// 3) Mixed P1
-	std::random_shuffle(P1.begin(), P1.end());
+	std::random_device rd;
+	std::mt19937 g(rd());
+	std::shuffle(P1.begin(), P1.end(), g);
 	std::cout << "Mixed P1 sequence: ";
 	for (int num : P1) {
 		std::cout << num << " ";
 	}
 	std::cout << std::endl;
 	// 4) Deleted dublicates
+	std::sort(P1.begin(), P1.end());
 	P1.erase(std::unique(P1.begin(), P1.end()), P1.end());
 	std::cout << "P1 sequence after deleting duplicates: ";
 	for (int num : P1) {
 		std::cout << num << " ";
 	}
 	// 5) Counted amount of %2 == 0 numbers
-	std::cout << "Amount of %2==0 numbers in P1: " << std::count_if(P1.begin(), P1.end(), [](int x) {return x % 2 == 0;}) << std::endl;
+	std::cout << "Amount of %2==0 numbers in P1: " << std::count_if(P1.begin(), P1.end(), [](const auto x) {return x % 2 == 0;}) << std::endl;
 	// 6) Minimum/maximum
 	auto minimum = *std::min_element(P1.begin(), P1.end());
 	auto maximum = *std::max_element(P1.begin(), P1.end());
@@ -47,7 +51,7 @@ int main()
 	// 7) Find prime number
 
 	// 8) Changed every number value by its square
-	std::transform(P1.begin(), P1.end(), P1.begin(), [](int x) {return x * x;});
+	std::transform(P1.begin(), P1.end(), P1.begin(), [](const auto x) {return x * x;});
 	std::cout << "P1 sequence after changing each value by its square: ";
 	for (int num : P1) {
 		std::cout << num << " ";
@@ -57,7 +61,10 @@ int main()
 
 	// 9) Created P2(size P1 + random number values)
 	std::vector<int> P2(P1.size());
-	std::generate(P2.begin(), P2.end(), []() {return rand() % 100;});
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<int> dist(0, 99);
+	std::generate(P2.begin(), P2.end(), [&dist, &gen]() { return dist(gen); });
 	std::cout << "P2 sequence: ";
 	for (int num : P2) {
 		std::cout << num << " ";
@@ -105,6 +112,7 @@ int main()
 	std::cout << std::endl;
 
 	// 16) Top-3 max els, set_difference
+	std::partial_sort(P3.begin(), P3.begin() + 3, P3.end(), std::greater<int>());
 	//17)Sort P1 and P2
 	std::sort(P1.begin(), P1.end());
 	std::cout << "P1 after sorting: ";
@@ -135,29 +143,15 @@ int main()
 	}
 	std::cout << std::endl;
 	// 20) Cout 10 elements of all sequences
-	std::cout << "10 elements of P1: ";
-	for (int i = 0; i < 10 && i < P1.size(); ++i) {
-		std::cout << P1[i] << " ";
-	}
-	std::cout << std::endl;
+	auto printTen = [](const std::vector<int>& vec) {
+		auto count = 0;
+		std::copy(vec.begin(), vec.end(), std::ostream_iterator<int>(std::cout, " "));
+		std::cout << std::endl;
+		};
 
-	std::cout << "10 elements of P2: ";
-	for (int i = 0; i < 10 && i < P2.size(); ++i) {
-		std::cout << P2[i] << " ";
-	}
-	std::cout << std::endl;
-
-	std::cout << "10 elements of P3: ";
-	for (int i = 0; i < 10 && i < P3.size(); ++i) {
-		std::cout << P3[i] << " ";
-	}
-	std::cout << std::endl;
-
-	std::cout << "10 elements of P4: ";
-	for (int i = 0; i < 10 && i < P4.size(); ++i) {
-		std::cout << P4[i] << " ";
-	}
-	std::cout << std::endl;
+	printTen(P1);
+	printTen(P2);
+	printTen(P3);
 
 	return 0;
 }
